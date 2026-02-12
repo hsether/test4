@@ -3,40 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Test 4 Section Only</title>
+  <title>Test 4 — IV Catheter with Labels</title>
+
   <style>
-    /* --- Minimal required styles from original --- */
+    /* ===== Minimal base ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       line-height: 1.7;
       color: #333;
       background: #fff;
-      padding: 24px 16px;
     }
-    .blog-container { max-width: 900px; margin: 0 auto; }
+    .blog-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
 
-    h2 {
-      font-size: 2em;
-      line-height: 1.3;
-      margin: 1.5em 0 0.8em;
-      color: #1a1a1a;
-      border-bottom: 2px solid #e0e0e0;
-      padding-bottom: 0.3em;
-    }
-    h3 {
-      font-size: 1.5em;
-      margin: 1.3em 0 0.6em;
-      color: #2a2a2a;
-    }
-    p { margin-bottom: 1.2em; }
-    ul { margin: 1em 0 1.5em 2em; }
-    li { margin-bottom: 0.5em; }
-    strong { font-weight: 600; color: #1a1a1a; }
-
-    /* Prompt Collapsible Section */
+    /* ===== Prompt Collapsible ===== */
     .prompt-container {
-      margin: 2em 0;
       border: 1px solid #ddd;
       border-radius: 8px;
       overflow: hidden;
@@ -52,7 +37,7 @@
       transition: background 0.2s;
     }
     .prompt-header:hover { background: #eef1f4; }
-    .prompt-header strong { font-size: 1.05em; }
+    .prompt-header strong { font-size: 1.05em; font-weight: 600; color: #1a1a1a; }
     .prompt-toggle {
       font-size: 1.2em;
       color: #666;
@@ -77,12 +62,12 @@
       margin: 0;
     }
 
-    /* Image Gallery */
+    /* ===== Image Gallery ===== */
     .image-gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 15px;
-      margin: 2em 0;
+      margin-top: 18px;
     }
     .gallery-item {
       position: relative;
@@ -104,7 +89,9 @@
     }
     .gallery-label {
       position: absolute;
-      bottom: 0; left: 0; right: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
       color: #fff;
       padding: 30px 10px 10px;
@@ -112,122 +99,88 @@
       font-weight: 600;
     }
 
-    /* Score Table */
-    .score-table-container { margin: 2em 0; overflow-x: auto; }
-    .score-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #fff;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .score-table th {
-      background: #2c3e50;
-      color: #fff;
-      padding: 12px 10px;
-      text-align: left;
-      font-weight: 600;
-      font-size: 0.9em;
-    }
-    .score-table td {
-      padding: 12px 10px;
-      border-bottom: 1px solid #e0e0e0;
-      font-size: 0.95em;
-    }
-    .score-table tr:last-child td { border-bottom: none; }
-    .score-table tr:nth-child(even) { background: #f9f9f9; }
-    .score-table tr:hover { background: #f5f5f5; }
-    .score-table td:first-child { font-weight: 600; color: #1a1a1a; }
-    .score-table td:last-child { font-weight: 700; color: #2c3e50; font-size: 1.1em; }
-    .ghost-row { background: #ecfdf5 !important; }
-    .ghost-row:hover { background: #d1fae5 !important; }
-
-    /* Model Notes */
-    .model-note {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 20px;
-      margin: 1.5em 0;
-    }
-    .model-note h4 {
-      font-size: 1.2em;
-      margin: 0 0 0.5em 0;
-      color: #333;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .model-note .score-badge {
-      background: #e2e8f0;
-      padding: 4px 10px;
-      border-radius: 4px;
-      font-size: 0.85em;
-      font-weight: 600;
-    }
-
-    /* Lightbox */
+    /* ===== Lightbox (same behavior; simplified styling) ===== */
     .lightbox {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.95);
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.70);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
       z-index: 9999;
       justify-content: center;
       align-items: center;
       padding: 20px;
     }
     .lightbox.active { display: flex; }
-    .lightbox-content { max-width: 90%; max-height: 90%; position: relative; }
-    .lightbox-content img {
-      max-width: 100%;
+
+    .lightbox-content {
+      position: relative;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.25);
+      padding: 14px;
+      max-width: min(1000px, 95vw);
       max-height: 90vh;
-      object-fit: contain;
-      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+
+    .lightbox-content img {
+      width: auto;
+      max-width: 100%;
+      max-height: 78vh;
+      object-fit: contain;
+      border-radius: 8px;
+      display: block;
+      background: #fff;
+    }
+
     .lightbox-close {
       position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 40px;
-      color: #fff;
+      top: 10px;
+      right: 10px;
+      font-size: 28px;
+      line-height: 1;
+      color: #111;
       cursor: pointer;
       z-index: 10000;
-      width: 50px;
-      height: 50px;
+      width: 38px;
+      height: 38px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(0,0,0,0.5);
-      border-radius: 50%;
-      transition: background 0.2s;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(0,0,0,0.10);
+      border-radius: 999px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+      transition: transform 0.15s ease, background 0.2s ease;
     }
-    .lightbox-close:hover { background: rgba(0,0,0,0.8); }
+    .lightbox-close:hover {
+      background: rgba(255,255,255,1);
+      transform: scale(1.03);
+    }
+
     .lightbox-caption {
-      color: #fff;
+      color: #222;
       text-align: center;
-      margin-top: 15px;
-      font-size: 1.1em;
+      margin-top: 12px;
+      font-size: 1.0em;
     }
 
     @media (max-width: 768px) {
-      h2 { font-size: 1.6em; }
       .image-gallery { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
-      .score-table th, .score-table td { padding: 8px 6px; }
+      .lightbox-content { padding: 12px; }
+      .lightbox-content img { max-height: 72vh; }
     }
   </style>
 </head>
 
 <body>
   <div class="blog-container">
-
-    <!-- Removed:
-         <h2>Test 4: IV Catheter Hub with Labeled Callouts</h2>
-         The intro <p>
-         The <ul> bullet list
-    -->
-
     <div class="prompt-container" onclick="togglePrompt(this)">
       <div class="prompt-header">
         <strong>Show Prompt: Test 4, IV Catheter with Labels</strong>
@@ -274,92 +227,6 @@ The label boxes are dark with glowing amber borders and subtle UI micro details,
         <div class="gallery-label">Midjourney (9/25)</div>
       </div>
     </div>
-
-    <div class="score-table-container">
-      <table class="score-table">
-        <thead>
-          <tr>
-            <th>Generator</th>
-            <th>Prompt</th>
-            <th>Labels</th>
-            <th>Medical</th>
-            <th>Concept</th>
-            <th>Polish</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="ghost-row">
-            <td>Ghost (Human Baseline)</td>
-            <td>5</td><td>5</td><td>5</td><td>5</td><td>5</td>
-            <td><strong>25</strong></td>
-          </tr>
-          <tr>
-            <td>Sora</td>
-            <td>3</td><td>4</td><td>2</td><td>4</td><td>4</td>
-            <td><strong>17</strong></td>
-          </tr>
-          <tr>
-            <td>AIMAGE</td>
-            <td>3</td><td>4</td><td>2</td><td>4</td><td>3</td>
-            <td><strong>16</strong></td>
-          </tr>
-          <tr>
-            <td>Nano Banana</td>
-            <td>2</td><td>2</td><td>2</td><td>3</td><td>4</td>
-            <td><strong>13</strong></td>
-          </tr>
-          <tr>
-            <td>Flux 2</td>
-            <td>3</td><td>2</td><td>1</td><td>3</td><td>4</td>
-            <td><strong>13</strong></td>
-          </tr>
-          <tr>
-            <td>Grok</td>
-            <td>2</td><td>2</td><td>2</td><td>3</td><td>3</td>
-            <td><strong>12</strong></td>
-          </tr>
-          <tr>
-            <td>Midjourney</td>
-            <td>1</td><td>0</td><td>2</td><td>2</td><td>4</td>
-            <td><strong>9</strong></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Model-by-Model Notes</h3>
-
-    <div class="model-note">
-      <h4>Ghost (Human Baseline) <span class="score-badge">25/25</span></h4>
-      <p>Everything the prompt demanded shows up cleanly and intentionally. Clear hub with believable internal detail, correct clinical framing, soft DOF with gloved fingertips, and the amber HUD callouts are the exact style target. This is what "production-correct" looks like. It's not just pretty. It's art-directed, CAD-grounded, and clinically reviewed, so the prompt is effectively a description of this result.</p>
-    </div>
-
-    <div class="model-note">
-      <h4>Sora <span class="score-badge">17/25</span></h4>
-      <p>Clean, readable callouts with correct phrases, clear product visibility, and overall high polish. If someone needed a quick marketing graphic, it's close. Lost points because the labels are not the amber HUD style with micro UI details. They're conventional boxes. The "two translucent gloved fingertips hovering" requirement is not met as written. One of the better "follow instructions and look clean" attempts, but it doesn't hit the specific Ghost HUD art direction.</p>
-    </div>
-
-    <div class="model-note">
-      <h4>AIMAGE <span class="score-badge">16/25</span></h4>
-      <p>Strongly resembles the client's callout branding language and placement logic. Two callouts, leader lines, readable typography, generally clean presentation. Lost points because HUD color and styling drift (reads more "blue hologram overlays" than "amber futuristic HUD"), and the composition is not the requested tight macro closeup with two out-of-focus fingertips hovering behind. Very usable as a style-matcher, still not dependable for clinically plausible placement without correction.</p>
-    </div>
-
-    <div class="model-note">
-      <h4>Flux 2 <span class="score-badge">13/25</span></h4>
-      <p>The callout style is suspiciously close to the Ghost HUD look, and the render polish is strong. If this were a pure "make it look cool" test, it would rank higher. Lost points because the lower label is misspelled ("Ridge Catheter Hub" instead of "Ridged Catheter Hub"), which is an automatic major hit in a medical labeling test. It appears to have learned the aesthetic, but not the clinical truth underneath it.</p>
-    </div>
-
-    <div class="model-note">
-      <h4>Nano Banana <span class="score-badge">13/25</span></h4>
-      <p>Strong visual polish, clean studio feel, good depth and lighting. Lost points because of misspelling on "Ridged Catheter Hub" (it reads like "Carheter"), which is a labeling failure for this test. Looks good, fails the "exact words, exact style" requirement.</p>
-    </div>
-
-    <div class="model-note">
-      <h4>Midjourney <span class="score-badge">9/25</span></h4>
-      <p>High-end cinematic rendering and texture detail. <strong>This is the classic failure mode.</strong> It invents extra labels, adds gibberish microtext, and violates "no other text." It can look expensive, but it's unreliable where medical work actually breaks, which is text discipline and constraint-following.</p>
-    </div>
-
   </div>
 
   <!-- Lightbox -->
@@ -377,12 +244,12 @@ The label boxes are dark with glowing amber borders and subtle UI micro details,
     }
 
     const lightboxData = {
-      "test4-ghost": { src: "images/test4-ghost.webp", caption: "Ghost IV Catheter (25/25)" },
-      "test4-sora": { src: "images/test4-sora.webp", caption: "Sora IV Catheter (17/25)" },
-      "test4-aimage": { src: "images/test4-aimage.webp", caption: "AIMAGE IV Catheter (16/25)" },
-      "test4-nano": { src: "images/test4-nanobanana.webp", caption: "Nano Banana IV Catheter (13/25)" },
-      "test4-flux": { src: "images/test4-flux2.webp", caption: "Flux 2 IV Catheter (13/25)" },
-      "test4-grok": { src: "images/test4-grok.webp", caption: "Grok IV Catheter (12/25)" },
+      "test4-ghost":      { src: "images/test4-ghost.webp",      caption: "Ghost IV Catheter (25/25)" },
+      "test4-sora":       { src: "images/test4-sora.webp",       caption: "Sora IV Catheter (17/25)" },
+      "test4-aimage":     { src: "images/test4-aimage.webp",     caption: "AIMAGE IV Catheter (16/25)" },
+      "test4-nano":       { src: "images/test4-nanobanana.webp", caption: "Nano Banana IV Catheter (13/25)" },
+      "test4-flux":       { src: "images/test4-flux2.webp",      caption: "Flux 2 IV Catheter (13/25)" },
+      "test4-grok":       { src: "images/test4-grok.webp",       caption: "Grok IV Catheter (12/25)" },
       "test4-midjourney": { src: "images/test4-midjourney.webp", caption: "Midjourney IV Catheter (9/25)" }
     };
 
@@ -412,7 +279,8 @@ The label boxes are dark with glowing amber borders and subtle UI micro details,
     });
   </script>
 
-  <!-- Keep if you’re embedding this in an iframe (same as your other embed snippets) -->
+  <!-- Keep if you’re embedding this page in an iframe -->
   <script src="https://cdn.jsdelivr.net/npm/iframe-resizer@4.3.9/js/iframeResizer.contentWindow.min.js"></script>
 </body>
 </html>
+
